@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kripto Toolkit — Modulo, Huruf↔Angka, Caesar, XOR</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <div class="idcard">
+    <div class="idcard-row"><span>Nama</span><b>Aji Muhamad Nasir</b></div>
+    <div class="idcard-row"><span>NIM</span><b>312410317</b></div>
+    <div class="idcard-row"><span>Kelas</span><b>I243E</b></div>
+  </div>
+
+  <header class="hero">
+    <h1>🔐 Kripto Toolkit</h1>
+    <p>Operasi Modulo · Huruf↔Angka · Caesar Cipher · XOR Biner</p>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-tab="modulo">01 · Modulo</button>
+    <button class="tab" data-tab="convert">02 · Huruf↔Angka</button>
+    <button class="tab" data-tab="caesar">03 · Caesar</button>
+    <button class="tab" data-tab="xor">04 · XOR</button>
+  </nav>
+
+  <main>
+    <!-- 01 MODULO -->
+    <section class="panel active" id="modulo">
+      <h2>Operasi Modulo</h2>
+      <p class="desc">Menghitung <code>a mod m</code> dengan hasil selalu non-negatif (rentang 0 … m-1).</p>
+      <div class="grid-2">
+        <label>a (bilangan)
+          <input type="number" id="mod-a" value="10" />
+        </label>
+        <label>m (modulus)
+          <input type="number" id="mod-m" value="3" />
+        </label>
+      </div>
+      <button class="run" onclick="runModulo()">Hitung</button>
+      <div class="output" id="mod-out"></div>
+    </section>
+
+    <!-- 02 CONVERT -->
+    <section class="panel" id="convert">
+      <h2>Konversi Huruf ↔ Angka</h2>
+      <p class="desc">Pemetaan <code>A=0, B=1, … Z=25</code>.</p>
+      <div class="segmented">
+        <button class="seg active" data-mode="char2num" data-group="conv">Huruf → Angka</button>
+        <button class="seg" data-mode="num2char" data-group="conv">Angka → Huruf</button>
+      </div>
+      <label>Input
+        <input type="text" id="conv-text" value="HELLO" placeholder="HELLO  atau  7 4 11 11 14" />
+      </label>
+      <button class="run" onclick="runConvert()">Konversi</button>
+      <div class="output" id="conv-out"></div>
+    </section>
+
+    <!-- 03 CAESAR -->
+    <section class="panel" id="caesar">
+      <h2>Caesar Cipher</h2>
+      <p class="desc">Rumus enkripsi <code>C = (P + shift) mod 26</code>. Non-huruf dibiarkan apa adanya.</p>
+      <div class="segmented">
+        <button class="seg active" data-mode="encrypt" data-group="caesar">Enkripsi</button>
+        <button class="seg" data-mode="decrypt" data-group="caesar">Dekripsi</button>
+      </div>
+      <label>Teks
+        <textarea id="cae-text" rows="3">Hello, World!</textarea>
+      </label>
+      <label>Shift (geser)
+        <input type="number" id="cae-shift" value="3" />
+      </label>
+      <button class="run" onclick="runCaesar()">Proses</button>
+      <div class="output" id="cae-out"></div>
+    </section>
+
+    <!-- 04 XOR -->
+    <section class="panel" id="xor">
+      <h2>XOR Biner</h2>
+      <p class="desc">Repeating-key XOR. Enkripsi menghasilkan hex &amp; bit; dekripsi menerima input hex.</p>
+      <div class="segmented">
+        <button class="seg active" data-mode="encrypt" data-group="xor">Enkripsi (teks→hex)</button>
+        <button class="seg" data-mode="decrypt" data-group="xor">Dekripsi (hex→teks)</button>
+      </div>
+      <label><span id="xor-label">Teks</span>
+        <textarea id="xor-text" rows="2">SECRET</textarea>
+      </label>
+      <label>Key
+        <input type="text" id="xor-key" value="key" />
+      </label>
+      <button class="run" onclick="runXor()">Proses</button>
+      <div class="output" id="xor-out"></div>
+    </section>
+  </main>
+
+  <footer>Tugas 2 Kriptografi</footer>
+
+  <script src="crypto.js"></script>
+</body>
+</html>
